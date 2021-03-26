@@ -1,8 +1,20 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {Text} from 'react-native';
+import {Button, Text} from 'react-native';
 
 const Page2: React.FC = () => {
-  return <Text> PAGINA 2</Text>;
+  const navigation = useNavigation();
+  return (
+    <>
+      <Button
+        title="Voltar"
+        onPress={() => {
+          navigation.navigate('Home');
+        }}
+      />
+      <Text> PAGINA 2</Text>
+    </>
+  );
 };
 
 export default Page2;
