@@ -1,19 +1,26 @@
-import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {Button, Text} from 'react-native';
+import {ScrollView} from 'react-native';
+import Info from '../../components/Info';
+
+import styles from './styles';
 
 const Page2: React.FC = () => {
-  const navigation = useNavigation();
   return (
-    <>
-      <Button
-        title="Voltar"
-        onPress={() => {
-          navigation.navigate('Home');
-        }}
-      />
-      <Text> PAGINA 2</Text>
-    </>
+    <ScrollView style={styles.container}>
+      <Info title="Proprietário" value="André" />
+      <Info title="Modelo veículo" value="sentra" />
+      <Info title="Cor veículo" value="prata" />
+      <Info title="Ano veículo" value="2021" />
+      <Info title="Data de compra" value="13/05/2021" />
+      <Info title="Data de compra" value="13/05/2021" />
+      <Info title="Data de compra" value="13/05/2021" />
+      <Info title="Data de compra" value="13/05/2021" />
+      <Info title="Data de compra" value="13/05/2021" />
+      <Info title="Data de compra" value="13/05/2021" />
+      <Info title="Data de compra" value="13/05/2021" />
+      <Info title="Data de compra" value="13/05/2021" />
+      <Info title="Data de compra" value="13/05/2021" />
+    </ScrollView>
   );
 };
 
