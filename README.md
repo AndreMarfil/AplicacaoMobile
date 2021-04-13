@@ -23,12 +23,28 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias
 
 - [React Native](https://reactnative.dev/)
 - [Axios](https://github.com/axios/axios)
-- [Node] (https://nodejs.org/en/docs/)
+
 ---
 
 ## 🗂 Como baixar o projeto
 
 ```bash	
+
+Para rodar a API é necessário baixar o projeto do repositório: https://github.com/AndreMarfil/AplicacaoMobile-API
+
+    # Clonar o repositório
+    $ git clone https://github.com/AndreMarfil/AplicacaoMobile-API.git
+
+    # Entrar no diretório
+    $ cd Backend
+
+    # Instalar as dependências
+    $ yarn install
+
+    # Iniciar o projeto
+    $ node server.js 
+
+    ------------------------------------
 
     # Clonar o repositório
     $ git clone https://github.com/AndreMarfil/AplicacaoMobile.git
