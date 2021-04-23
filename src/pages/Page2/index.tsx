@@ -1,6 +1,6 @@
-import {useRoute} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import React, {useState, useEffect, useCallback} from 'react';
-import {ScrollView} from 'react-native';
+import {Alert, ScrollView} from 'react-native';
 import Info from '../../components/Info';
 
 import api from '../../services/api';
@@ -33,6 +33,7 @@ interface RouteParams {
 
 const Page2: React.FC = () => {
   const route = useRoute();
+  const navigation = useNavigation();
 
   const {placa} = route.params as RouteParams;
 
@@ -41,8 +42,16 @@ const Page2: React.FC = () => {
   const findCar = useCallback(async () => {
     const response = await api.get<Car>('', {params: {placa}});
 
+    if (response.status === 400) {
+      Alert.alert(
+        'Desculpe',
+        'Não encontramos a placa em nosso banco de dados',
+        [{text: 'Go back', onPress: () => navigation.goBack()}],
+      );
+    }
+
     setCar(response.data);
-  }, [placa]);
+  }, [placa, navigation]);
 
   useEffect(() => {
     findCar();

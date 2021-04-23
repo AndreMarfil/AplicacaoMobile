@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
-import {Button, Text, TextInput, View} from 'react-native';
+import {Text, TextInput, View} from 'react-native';
+import {RectButton} from 'react-native-gesture-handler';
 import styles from './styles';
 
 const Home: React.FC = () => {
@@ -10,19 +11,22 @@ const Home: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Procurar por placa:</Text>
       <TextInput
-        placeholder="Inserir placa"
+        placeholder="Insira a placa "
         value={placa}
         onChangeText={setPlaca}
+        textAlign="center"
+        autoFocus
+        placeholderTextColor="#0c0c0c"
+        style={styles.textInput}
       />
-
-      <Button
-        title="Pesquisar"
+      <RectButton
+        style={styles.button}
         onPress={() => {
           navigation.navigate('Page2', {placa});
-        }}
-      />
+        }}>
+        <Text style={styles.text}>Pesquisar</Text>
+      </RectButton>
     </View>
   );
 };

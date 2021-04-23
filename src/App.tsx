@@ -22,7 +22,7 @@ export default function App() {
         <Stack.Screen
           name="Page2"
           component={Page2}
-          options={{title: 'Segunda Tela'}}
+          options={{title: 'Informações'}}
         />
       </Stack.Navigator>
     </NavigationContainer>
