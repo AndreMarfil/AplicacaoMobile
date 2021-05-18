@@ -64,6 +64,7 @@ const Page2: React.FC = () => {
       <Info title="Cor veículo:" value={car.cor} />
       <Info title="Município do veículo:" value={car.municipio} />
       <Info title="UF do veículo:" value={car.uf} />
+      <Info title="Chassi do veículo:" value={car.chassi} />
     </ScrollView>
   );
 };

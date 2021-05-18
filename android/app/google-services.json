@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "310611327448",
+    "project_id": "desenvolvimentomobile-dafe1",
+    "storage_bucket": "desenvolvimentomobile-dafe1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:310611327448:android:e7b418faab78ef8eb2daad",
+        "android_client_info": {
+          "package_name": "com.aplicacaomobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "310611327448-ajggju4pci91b0597m4jlnia7f2i34hv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7gVFg7PsPJtRcjVuPa4vsEW6n0akXKG8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "310611327448-ajggju4pci91b0597m4jlnia7f2i34hv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
