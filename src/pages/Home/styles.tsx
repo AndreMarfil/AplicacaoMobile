@@ -22,9 +22,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 50,
+    marginBottom: 25,
   },
   text: {
     color: '#ffffff',
+  },
+  scrollView: {
+    height: 150,
   },
 });
 

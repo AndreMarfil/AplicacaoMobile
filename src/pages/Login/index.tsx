@@ -1,4 +1,4 @@
-//import {useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import React, {useCallback} from 'react';
 import {View} from 'react-native';
 import {
@@ -6,9 +6,10 @@ import {
   GoogleSigninButton,
 } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 const Login: React.FC = () => {
-  //const navigation = useNavigation();
+  const navigation = useNavigation();
 
   const signInGoogle = useCallback(async () => {
     GoogleSignin.configure({
@@ -17,13 +18,26 @@ const Login: React.FC = () => {
     });
 
     const {idToken} = await GoogleSignin.signIn();
-    console.log(idToken);
+
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 
     const {user} = await auth().signInWithCredential(googleCredential);
 
-    console.log(user);
-  }, []);
+    const usersCollection = firestore().collection('users');
+
+    usersCollection
+      .where('email', '==', user.email)
+      .get()
+      .then(snapshot => {
+        if (snapshot.empty) {
+          usersCollection.add({
+            email: user.email,
+          });
+        }
+
+        navigation.navigate('Home');
+      });
+  }, [navigation]);
 
   return (
     <View>

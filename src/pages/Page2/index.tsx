@@ -2,6 +2,8 @@ import {useNavigation, useRoute} from '@react-navigation/native';
 import React, {useState, useEffect, useCallback} from 'react';
 import {Alert, ScrollView} from 'react-native';
 import Info from '../../components/Info';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 import api from '../../services/api';
 
@@ -51,6 +53,21 @@ const Page2: React.FC = () => {
     }
 
     setCar(response.data);
+
+    const usersCollection = firestore().collection('users');
+
+    const email = auth().currentUser?.email;
+
+    const user = await usersCollection.where('email', '==', email).get();
+
+    const carsCollection = firestore().collection(
+      'users/' + user.docs[0].id + '/cars',
+    );
+
+    carsCollection.add({
+      placa: response.data.placa,
+      chassi: response.data.chassi,
+    });
   }, [placa, navigation]);
 
   useEffect(() => {
