@@ -1,14 +1,6 @@
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
-import React, {useCallback, useEffect, useState} from 'react';
-import {
-  FlatList,
-  ScrollView,
-  Text,
-  TextInput,
-  TouchableHighlight,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import React, {useCallback, useState} from 'react';
+import {FlatList, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {RectButton} from 'react-native-gesture-handler';
 import styles from './styles';
 import auth from '@react-native-firebase/auth';
@@ -60,13 +52,23 @@ const Home: React.FC = () => {
         placeholderTextColor="#0c0c0c"
         style={styles.textInput}
       />
-      <RectButton
-        style={styles.button}
-        onPress={() => {
-          navigation.navigate('Page2', {placa});
-        }}>
-        <Text style={styles.text}>Pesquisar</Text>
-      </RectButton>
+      <View style={{flexDirection: 'row'}}>
+        <RectButton
+          style={styles.button}
+          onPress={() => {
+            navigation.navigate('Page2', {placa});
+          }}>
+          <Text style={styles.text}>Pesquisar</Text>
+        </RectButton>
+        <RectButton
+          style={styles.button}
+          onPress={() => {
+            auth().signOut();
+            navigation.navigate('Login');
+          }}>
+          <Text style={styles.text}>Sair</Text>
+        </RectButton>
+      </View>
 
       <View style={styles.scrollView}>
         <FlatList

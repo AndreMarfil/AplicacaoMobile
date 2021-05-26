@@ -40,7 +40,7 @@ const Login: React.FC = () => {
   }, [navigation]);
 
   return (
-    <View>
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <GoogleSigninButton onPress={signInGoogle} />
     </View>
   );

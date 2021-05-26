@@ -42,32 +42,33 @@ const Page2: React.FC = () => {
   const [car, setCar] = useState<Car>({} as Car);
 
   const findCar = useCallback(async () => {
-    const response = await api.get<Car>('', {params: {placa}});
+    api
+      .get<Car>('', {params: {placa}})
+      .then(async response => {
+        setCar(response.data);
 
-    if (response.status === 400) {
-      Alert.alert(
-        'Desculpe',
-        'Não encontramos a placa em nosso banco de dados',
-        [{text: 'Go back', onPress: () => navigation.goBack()}],
-      );
-    }
+        const usersCollection = firestore().collection('users');
 
-    setCar(response.data);
+        const email = auth().currentUser?.email;
 
-    const usersCollection = firestore().collection('users');
+        const user = await usersCollection.where('email', '==', email).get();
 
-    const email = auth().currentUser?.email;
+        const carsCollection = firestore().collection(
+          'users/' + user.docs[0].id + '/cars',
+        );
 
-    const user = await usersCollection.where('email', '==', email).get();
-
-    const carsCollection = firestore().collection(
-      'users/' + user.docs[0].id + '/cars',
-    );
-
-    carsCollection.add({
-      placa: response.data.placa,
-      chassi: response.data.chassi,
-    });
+        carsCollection.add({
+          placa: response.data.placa,
+          chassi: response.data.chassi,
+        });
+      })
+      .catch(() => {
+        Alert.alert(
+          'Desculpe',
+          'Não encontramos a placa em nosso banco de dados',
+          [{text: 'Retornar', onPress: () => navigation.goBack()}],
+        );
+      });
   }, [placa, navigation]);
 
   useEffect(() => {
