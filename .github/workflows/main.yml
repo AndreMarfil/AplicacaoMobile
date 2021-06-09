@@ -1,0 +1,28 @@
+name: deployci
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install npm dependencies
+        run: |
+          npm install
+      - name: Permissao
+        run: |
+          cd android && chmod +x ./gradlew
+      - name: Build Release
+        run: |
+          cd android && ./gradlew assembleRelease
+   
+      - name: Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
+        with:
+         appId: ${{ secrets.FIREBASE_APP_ID }}
+         token: ${{ secrets.FIREBASE_TOKEN }}
+         groups: teste
+         file: android/app/build/outputs/apk/release/app-release.apk
